@@ -47,7 +47,7 @@ class ExampleUnitTest {
         println("=========================================")
 
         carrito.add(Producto("Laptop HP", 2400.0, 1))
-        carrito.add(Producto("Mouse", 40.0, 4))
+        carrito.add(Producto("Mouse", 45.5, 2))
         carrito.add(Producto("Audifonos Sony", 80.0, 2))
         carrito.add(Producto("Teclado", 55.0, 3))
 
@@ -55,12 +55,28 @@ class ExampleUnitTest {
             println("Producto(s) agregado al carrito: ${producto.nombre}")
         }
 
-        val subtot = calcularSubtotal(carrito)
-        val igv = calcularIGV(subtot)
-        val tot = calcularTotal(subtot, igv)
-
-        println("Subtotal : ${subtot}")
-        println("IGV (18%): ${igv}")
-        println("TOTAL    : ${tot}")
+        fun mostrarDetalle(productos: List<Producto>) {
+            println("--------- DETALLE DEL CARRITO------------")
+            var i = 1
+            for (p in productos) {
+                val importe = p.precio * p.cantidad
+                println(
+                    String.format(
+                        "%d. %-20s x%d S/ %8.2f",
+                        i, p.nombre, p.cantidad, importe
+                    )
+                )
+                i++
+            }
+            println("-----------------------------------------")
+            println(String.format("%-22s: %-10d", "Cantidad de productos", carrito.size))
+            var subtot = calcularSubtotal(carrito)
+            var IGV = calcularIGV(subtot)
+            var tot = calcularTotal(subtot, IGV)
+            println(String.format("%-22s: S/ %8.2f", "Subtotal", subtot))
+            println(String.format("%-22s: S/ %8.2f", "IGV (18%)", IGV))
+            println(String.format("%-22s: S/ %8.2f", "TOTAL A PAGAR", tot))
+        }
+        mostrarDetalle(carrito);
     }
 }
