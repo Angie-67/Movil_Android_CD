@@ -29,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vasquez.lab03registroproducto.ui.theme.Lab03RegistroProductoTheme
@@ -119,7 +120,7 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
         Button(
             onClick = {
                 if (nombre.isBlank() || precio.isBlank() || cantidad.isBlank()) {
-                    mensajeError = "Se deben completar todos los campos"
+                    mensajeError = "✕ Completa todos los campos para agregar producto"
                     mostrarResumen = false
                 } else {
                     mensajeError = ""
@@ -153,6 +154,7 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
                 text = mensajeError,
                 color = Color.Red,
                 fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
         }
