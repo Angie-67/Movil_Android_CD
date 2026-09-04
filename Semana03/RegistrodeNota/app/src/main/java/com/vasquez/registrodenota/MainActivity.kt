@@ -40,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vasquez.registrodenota.ui.theme.RegistrodeNotaTheme
@@ -305,16 +306,17 @@ fun PantallaPrincipal(modifier: Modifier) {
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(top = 10.dp)
                 )
-
-                Text(
-                    text = "Desarrollado por: Angieluz Vasquez Macalupu",
-                    color = Color.Gray,
-                    fontSize = 12.sp,
-                    modifier = Modifier.padding(top = 8.dp)
-                )
             }
         }
-
+        Spacer(modifier = Modifier.weight(1f))
+        Text(
+            text = "Desarrollado por: Angieluz Vasquez Macalupu",
+            color = Color.Gray,
+            fontSize = 12.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 8.dp))
     }
 }
 @OptIn(ExperimentalMaterial3Api::class)
