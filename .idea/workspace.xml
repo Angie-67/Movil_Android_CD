@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ac62d17-c387-4a9b-8eda-0505c7c49aea" name="Changes" comment="Crea proyecto Lab03 en Semana03" />
+    <list default="true" id="9ac62d17-c387-4a9b-8eda-0505c7c49aea" name="Changes" comment="Crea proyecto Lab03 en Semana03">
+      <change afterPath="$PROJECT_DIR$/Semana03/RegistrodeNota/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Semana03/RegistrodeNota/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Semana03/RegistrodeNota/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Semana03/RegistrodeNota/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Semana03/RegistrodeNota/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Semana03/RegistrodeNota/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Semana03/RegistrodeNota/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Semana03/RegistrodeNota/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semana03/Lab03RegistroProducto/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Semana03/Lab03RegistroProducto/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semana03/Lab03RegistroProducto/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Semana03/Lab03RegistroProducto/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semana03/Lab03RegistroProducto/app/src/main/java/com/vasquez/lab03registroproducto/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Semana03/Lab03RegistroProducto/app/src/main/java/com/vasquez/lab03registroproducto/MainActivity.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,24 +26,24 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Semana03/Lab03RegistroProducto" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Angie-67"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Angie-67&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Angie-67/Movil_Android_CD.git",
-    "accountId": "c8520dae-5cd2-4f0e-bc85-9ef4e26e4345"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Angie-67/Movil_Android_CD.git&quot;,
+    &quot;accountId&quot;: &quot;c8520dae-5cd2-4f0e-bc85-9ef4e26e4345&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7,
-  "fromUser": false
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3Io1GF4GLOS6u6ryXSFmf6orUhs" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -46,7 +58,7 @@
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "mejora-ia",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
