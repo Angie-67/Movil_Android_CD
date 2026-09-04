@@ -19,7 +19,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import com.vasquez.registrodenota.ui.theme.RegistrodeNotaTheme
 
 class MainActivity : ComponentActivity() {
@@ -30,7 +29,6 @@ class MainActivity : ComponentActivity() {
             RegistrodeNotaTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     PantallaPrincipal(
-                        name = "Android",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -52,6 +50,30 @@ fun PantallaPrincipal(modifier: Modifier){
     var promedioFinal by remember { mutableDoubleStateOf(0.0) }
     var chipColor by remember { mutableStateOf(Color.Gray) }
     var mostrar by remember { mutableStateOf(false) }
+
+    CursoSlider(
+        "Fundamentos de Programación",
+        20,
+        notFund
+    ) { notFund = it }
+
+    CursoSlider(
+        "Programación Orientada a Objetos",
+        25,
+        notPOO
+    ) { notPOO = it }
+
+    CursoSlider(
+        "Programación en Móviles",
+        30,
+        notProg
+    ) { notProg = it }
+
+    CursoSlider(
+        "Base de Datos",
+        25,
+        notBD
+    ) { notBD = it }
 }
 @Composable
 fun CursoSlider(
