@@ -6,17 +6,24 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -124,7 +131,9 @@ fun PantallaPrincipal(modifier: Modifier) {
         ) { notBD = it }
 
         Row(
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -159,11 +168,8 @@ fun PantallaPrincipal(modifier: Modifier) {
 
         Button(
             onClick = {
-                promedioPonderado =
-                    (notFund * 0.20) +
-                            (notPOO * 0.25) +
-                            (notProg * 0.30) +
-                            (notBD * 0.25)
+                val ponde = (notFund * 0.20) + (notPOO * 0.25) + (notProg * 0.30) + (notBD * 0.25)
+                promedioPonderado = ponde
                 if (redondear) {
                     promedioFinal = kotlin.math.round(promedioPonderado)
                 } else {
@@ -189,7 +195,11 @@ fun PantallaPrincipal(modifier: Modifier) {
                 modifier = Modifier.padding(16.dp)
             )
             Text(
-                text = "Promedio final: $promedioFinal",
+                text = if (redondear) {
+                    "Promedio final: ${promedioFinal.toInt()}"
+                } else {
+                    "Promedio final: %.2f".format(promedioFinal)
+                },
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(horizontal = 16.dp)
@@ -213,6 +223,7 @@ fun PantallaPrincipal(modifier: Modifier) {
 
     }
 }
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CursoSlider(
     nombre: String,
@@ -222,15 +233,62 @@ fun CursoSlider(
 ) {
     Column {
         Text(text = "$nombre ($peso%)")
-        Slider(
-            value = nota,
-            onValueChange = {
-                onNotaChange(it)
-            },
-            valueRange = 0f..20f,
-            steps = 19
-        )
-        Text(text = "Nota: ${nota.toInt()}")
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Slider(
+                value = nota,
+                onValueChange = {
+                    onNotaChange(it)
+                },
+                valueRange = 0f..20f,
+                steps = 0,
+                thumb = {
+                    Box(
+                        modifier = Modifier
+                            .size(18.dp)
+                            .background(
+                                Color(0xFF6B4EAF),
+                                CircleShape
+                            )
+                    )
+                },
+                track = { sliderState ->
+                    Box(Modifier.height(6.dp)) {
+                        SliderDefaults.Track(
+                            sliderState = sliderState,
+                            thumbTrackGapSize = 0.dp,
+                            trackInsideCornerSize = 3.dp,
+                            colors = SliderDefaults.colors(
+                                activeTrackColor = Color(0xFF5E4B8B),
+                                inactiveTrackColor = Color(0xFFC7BBE5),
+                                activeTickColor = Color.Transparent,
+
+                                inactiveTickColor = Color.Transparent
+                            )
+                        )
+                    }
+                },
+                modifier = Modifier.weight(1f)
+            )
+            Box(
+                modifier = Modifier
+                    .padding(start = 8.dp)
+                    .size(40.dp)
+                    .background(
+                        color = Color(0xFF6B4EAF),
+                        shape = RoundedCornerShape(8.dp)
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "${nota.toInt()}",
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
     }
 }
 
