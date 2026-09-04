@@ -5,10 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -26,6 +28,7 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.remote.creation.compose.state.round
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableDoubleStateOf
@@ -40,6 +43,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vasquez.registrodenota.ui.theme.RegistrodeNotaTheme
+import kotlin.math.roundToInt
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,6 +73,7 @@ fun PantallaPrincipal(modifier: Modifier) {
     var promedioPonderado by remember { mutableDoubleStateOf(0.0) }
     var promedioFinal by remember { mutableDoubleStateOf(0.0) }
     var mostrar by remember { mutableStateOf(false) }
+    val redon = Math.round(promedioPonderado)
 
     Column(
         modifier = Modifier
@@ -85,24 +90,28 @@ fun PantallaPrincipal(modifier: Modifier) {
                 .fillMaxWidth()
                 .background(Color(0xFF6B4EAF))
                 .padding(
-                    start = 16.dp,
+                    start = 12.dp,
                     top = 40.dp,
                     bottom = 18.dp
                 )
         )
         Column(
             modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 10.dp)
         ) {
             Text(
                 text = "Notas del ciclo",
                 color = Color.Black,
                 fontSize = 22.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .padding(top = 8.dp)
             )
             Text(
                 text = "Desliza para asignar cada nota (0 a 20)",
                 color = Color.Gray,
-                fontSize = 18.sp
+                fontSize = 15.sp
             )
         }
 
@@ -133,7 +142,7 @@ fun PantallaPrincipal(modifier: Modifier) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(10.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -146,7 +155,11 @@ fun PantallaPrincipal(modifier: Modifier) {
                 checked = redondear,
                 onCheckedChange = {
                     redondear = it
-                }
+                },
+                colors = androidx.compose.material3.SwitchDefaults.colors(
+                    checkedThumbColor = Color.White,
+                    checkedTrackColor = Color(0xFF6B4EAF)
+                )
             )
         }
 
@@ -180,7 +193,10 @@ fun PantallaPrincipal(modifier: Modifier) {
             enabled = confirmado,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(16.dp),
+                colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF6B4EAF)
+                )
         ) {
             Text(
                 text = "CALCULAR PROMEDIO"
@@ -188,37 +204,115 @@ fun PantallaPrincipal(modifier: Modifier) {
         }
 
         if (mostrar) {
-            Text(
-                text = "Promedio ponderado: %.2f".format(promedioPonderado),
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(16.dp)
-            )
-            Text(
-                text = if (redondear) {
-                    "Promedio final: ${promedioFinal.toInt()}"
-                } else {
-                    "Promedio final: %.2f".format(promedioFinal)
-                },
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(horizontal = 16.dp)
-            )
+
             val observacion = when {
                 promedioFinal >= 17 -> "EXCELENTE"
                 promedioFinal >= 13 -> "APROBADO"
                 promedioFinal >= 10 -> "EN RECUPERACIÓN"
                 else -> "DESAPROBADO"
             }
-            Text(
-                text = observacion,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(16.dp)
-            )
-            Text(
-                text = "✓ Promedio calculado correctamente",
-                modifier = Modifier.padding(16.dp)
-            )
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(
+                            width = 2.dp,
+                            color = Color(0xFFD9CFF0),
+                            shape = RoundedCornerShape(14.dp)
+                        )
+                        .padding(16.dp)
+                ) {
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(
+                            text = "Promedio ponderado:",
+                            fontSize = 16.sp,
+                            color = Color.DarkGray
+                        )
+
+                        Text(
+                            text = "%.2f".format(promedioPonderado),
+                            fontSize = 16.sp,
+                            color = Color.DarkGray
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Text(
+                        text = if (redondear) {
+                            "Promedio final: ${redon}"
+                        } else {
+                            "Promedio final: %.2f".format(promedioFinal)
+                        },
+                        fontSize = 19.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF6B4EAF)
+                    )
+
+                    if (redondear) {
+                        Text(
+                            text = "(redondeado)",
+                            fontSize = 13.sp,
+                            color = Color.Gray,
+                            modifier = Modifier.padding(top = 4.dp)
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Box(
+                        modifier = Modifier
+                            .background(
+                                color = when {
+                                    promedioFinal >= 13 -> Color(0xFFDDEFE1)
+                                    promedioFinal >= 10 -> Color(0xFFFFE8B3)
+                                    else -> Color(0xFFF5D6D6)
+                                },
+                                shape = RoundedCornerShape(20.dp)
+                            )
+                            .padding(
+                                horizontal = 18.dp,
+                                vertical = 7.dp
+                            )
+                    ) {
+                        Text(
+                            text = observacion,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = when {
+                                promedioFinal >= 13 -> Color(0xFF31813A)
+                                promedioFinal >= 10 -> Color(0xFF9A6B00)
+                                else -> Color(0xFFB3261E)
+                            }
+                        )
+                    }
+                }
+
+                Text(
+                    text = "✓ Promedio calculado correctamente",
+                    color = Color(0xFF438A4A),
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(top = 10.dp)
+                )
+
+                Text(
+                    text = "Desarrollado por: Angieluz Vasquez Macalupu",
+                    color = Color.Gray,
+                    fontSize = 12.sp,
+                    modifier = Modifier.padding(top = 8.dp)
+                )
+            }
         }
 
     }
@@ -231,64 +325,79 @@ fun CursoSlider(
     nota: Float,
     onNotaChange: (Float) -> Unit
 ) {
-    Column {
-        Text(text = "$nombre ($peso%)")
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 6.dp)
+    ) {
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Slider(
-                value = nota,
-                onValueChange = {
-                    onNotaChange(it)
-                },
-                valueRange = 0f..20f,
-                steps = 0,
-                thumb = {
-                    Box(
-                        modifier = Modifier
-                            .size(18.dp)
-                            .background(
-                                Color(0xFF6B4EAF),
-                                CircleShape
-                            )
-                    )
-                },
-                track = { sliderState ->
-                    Box(Modifier.height(6.dp)) {
-                        SliderDefaults.Track(
-                            sliderState = sliderState,
-                            thumbTrackGapSize = 0.dp,
-                            trackInsideCornerSize = 3.dp,
-                            colors = SliderDefaults.colors(
-                                activeTrackColor = Color(0xFF5E4B8B),
-                                inactiveTrackColor = Color(0xFFC7BBE5),
-                                activeTickColor = Color.Transparent,
 
-                                inactiveTickColor = Color.Transparent
-                            )
-                        )
-                    }
-                },
+            Text(
+                text = "$nombre ($peso%)",
+                fontWeight = FontWeight.Bold,
                 modifier = Modifier.weight(1f)
             )
+
             Box(
                 modifier = Modifier
-                    .padding(start = 8.dp)
                     .size(40.dp)
                     .background(
-                        color = Color(0xFF6B4EAF),
+                        color = Color(0xFFEEE6FC),
                         shape = RoundedCornerShape(8.dp)
                     ),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = "${nota.toInt()}",
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold
+                    color = Color(0xFF6B4EAF),
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(start = 10.dp)
                 )
             }
         }
+
+        Slider(
+            value = nota,
+            onValueChange = {
+                onNotaChange(it)
+            },
+            valueRange = 0f..20f,
+            steps = 0,
+            thumb = {
+                Box(
+                    modifier = Modifier
+                        .size(18.dp)
+                        .background(
+                            Color(0xFF6B4EAF),
+                            CircleShape
+                        )
+                )
+            },
+            track = { sliderState ->
+                Box(
+                    Modifier.height(6.dp)
+                ) {
+                    SliderDefaults.Track(
+                        sliderState = sliderState,
+                        thumbTrackGapSize = 0.dp,
+                        trackInsideCornerSize = 3.dp,
+                        colors = SliderDefaults.colors(
+                            activeTrackColor = Color(0xFF5E4B8B),
+                            inactiveTrackColor = Color(0xFFC7BBE5),
+                            activeTickColor = Color.Transparent,
+                            inactiveTickColor = Color.Transparent
+                        )
+                    )
+                }
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 10.dp)
+        )
     }
 }
 
