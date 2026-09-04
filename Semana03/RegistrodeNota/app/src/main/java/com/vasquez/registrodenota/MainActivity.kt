@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
@@ -135,6 +136,22 @@ fun PantallaPrincipal(modifier: Modifier) {
                 onCheckedChange = {
                     redondear = it
                 }
+            )
+        }
+
+        Row(
+            modifier = Modifier.padding(5.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Checkbox(
+                checked = confirmado,
+                onCheckedChange = {
+                    confirmado = it
+                }
+            )
+            Text(
+                text = "Confirmo que las notas son correctas",
+                modifier = Modifier.padding(start = 4.dp)
             )
         }
     }
