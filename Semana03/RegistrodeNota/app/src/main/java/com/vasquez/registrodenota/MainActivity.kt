@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -50,4 +52,24 @@ fun PantallaPrincipal(modifier: Modifier){
     var promedioFinal by remember { mutableDoubleStateOf(0.0) }
     var chipColor by remember { mutableStateOf(Color.Gray) }
     var mostrar by remember { mutableStateOf(false) }
+}
+@Composable
+fun CursoSlider(
+    nombre: String,
+    peso: Int,
+    nota: Float,
+    onNotaChange: (Float) -> Unit
+) {
+    Column {
+        Text(text = "$nombre ($peso%)")
+        Slider(
+            value = nota,
+            onValueChange = {
+                onNotaChange(it)
+            },
+            valueRange = 0f..20f,
+            steps = 19
+        )
+        Text(text = "Nota: ${nota.toInt()}")
+    }
 }
