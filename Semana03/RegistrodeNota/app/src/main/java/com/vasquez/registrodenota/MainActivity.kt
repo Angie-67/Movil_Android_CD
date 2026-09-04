@@ -1,6 +1,5 @@
 package com.vasquez.registrodenota
 
-import android.R
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,6 +11,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Scaffold
@@ -60,13 +61,13 @@ fun PantallaPrincipal(modifier: Modifier) {
     var confirmado by remember { mutableStateOf(false) }
     var promedioPonderado by remember { mutableDoubleStateOf(0.0) }
     var promedioFinal by remember { mutableDoubleStateOf(0.0) }
-    var chipColor by remember { mutableStateOf(Color.Gray) }
     var mostrar by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFF3EFFF))
+            .verticalScroll(rememberScrollState())
     ) {
         Text(
             text = "Registro de Notas",
@@ -170,6 +171,7 @@ fun PantallaPrincipal(modifier: Modifier) {
                 }
                 mostrar = true
             },
+            enabled = confirmado,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
@@ -178,6 +180,37 @@ fun PantallaPrincipal(modifier: Modifier) {
                 text = "CALCULAR PROMEDIO"
             )
         }
+
+        if (mostrar) {
+            Text(
+                text = "Promedio ponderado: %.2f".format(promedioPonderado),
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(16.dp)
+            )
+            Text(
+                text = "Promedio final: $promedioFinal",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+            val observacion = when {
+                promedioFinal >= 17 -> "EXCELENTE"
+                promedioFinal >= 13 -> "APROBADO"
+                promedioFinal >= 10 -> "EN RECUPERACIÓN"
+                else -> "DESAPROBADO"
+            }
+            Text(
+                text = observacion,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(16.dp)
+            )
+            Text(
+                text = "✓ Promedio calculado correctamente",
+                modifier = Modifier.padding(16.dp)
+            )
+        }
+
     }
 }
 @Composable
