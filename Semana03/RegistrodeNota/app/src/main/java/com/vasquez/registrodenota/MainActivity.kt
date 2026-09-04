@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
@@ -79,7 +80,7 @@ fun PantallaPrincipal(modifier: Modifier) {
                     start = 16.dp,
                     top = 40.dp,
                     bottom = 18.dp
-                    )
+                )
         )
         Column(
             modifier = Modifier
@@ -152,6 +153,29 @@ fun PantallaPrincipal(modifier: Modifier) {
             Text(
                 text = "Confirmo que las notas son correctas",
                 modifier = Modifier.padding(start = 4.dp)
+            )
+        }
+
+        Button(
+            onClick = {
+                promedioPonderado =
+                    (notFund * 0.20) +
+                            (notPOO * 0.25) +
+                            (notProg * 0.30) +
+                            (notBD * 0.25)
+                if (redondear) {
+                    promedioFinal = kotlin.math.round(promedioPonderado)
+                } else {
+                    promedioFinal = promedioPonderado
+                }
+                mostrar = true
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Text(
+                text = "CALCULAR PROMEDIO"
             )
         }
     }
