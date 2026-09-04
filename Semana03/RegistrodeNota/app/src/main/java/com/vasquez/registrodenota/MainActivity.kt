@@ -4,8 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
@@ -19,6 +21,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.vasquez.registrodenota.ui.theme.RegistrodeNotaTheme
 
 class MainActivity : ComponentActivity() {
@@ -38,7 +43,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun PantallaPrincipal(modifier: Modifier){
+fun PantallaPrincipal(modifier: Modifier) {
     var notFund by remember { mutableFloatStateOf(0f) }
     var notPOO by remember { mutableFloatStateOf(0f) }
     var notProg by remember { mutableFloatStateOf(0f) }
@@ -51,29 +56,46 @@ fun PantallaPrincipal(modifier: Modifier){
     var chipColor by remember { mutableStateOf(Color.Gray) }
     var mostrar by remember { mutableStateOf(false) }
 
-    CursoSlider(
-        "Fundamentos de Programación",
-        20,
-        notFund
-    ) { notFund = it }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFFF3EFFF))
+    ) {
+        Text(
+            text = "Registro de Notas",
+            color = Color.White,
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color(0xFF6B4EAF))
+                .padding(16.dp)
+        )
 
-    CursoSlider(
-        "Programación Orientada a Objetos",
-        25,
-        notPOO
-    ) { notPOO = it }
+        CursoSlider(
+            "Fundamentos de Programación",
+            20,
+            notFund
+        ) { notFund = it }
 
-    CursoSlider(
-        "Programación en Móviles",
-        30,
-        notProg
-    ) { notProg = it }
+        CursoSlider(
+            "Programación Orientada a Objetos",
+            25,
+            notPOO
+        ) { notPOO = it }
 
-    CursoSlider(
-        "Base de Datos",
-        25,
-        notBD
-    ) { notBD = it }
+        CursoSlider(
+            "Programación en Móviles",
+            30,
+            notProg
+        ) { notProg = it }
+
+        CursoSlider(
+            "Base de Datos",
+            25,
+            notBD
+        ) { notBD = it }
+    }
 }
 @Composable
 fun CursoSlider(
@@ -95,3 +117,4 @@ fun CursoSlider(
         Text(text = "Nota: ${nota.toInt()}")
     }
 }
+
