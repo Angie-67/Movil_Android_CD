@@ -34,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.focus.focusTarget
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -45,7 +46,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MaterialTheme{
-                ContadorConRemember()
+                Temperatura()
             }
         }
     }
@@ -78,6 +79,40 @@ fun ContadorConRemember() {
         Spacer(modifier = Modifier.height(8.dp))
         Button(onClick = {contador++}) {
             Text("Incrementar")
+        }
+    }
+}
+
+@Composable
+fun Temperatura() {
+    var temperatura by remember { mutableStateOf(20) }
+    Column(
+        modifier = Modifier.padding(top = 40.dp)
+    ) {
+        Text("Temperatura: $temperatura",
+            color = if (temperatura > 30){
+                Color.Red
+            } else {
+                if (temperatura < 10) {
+                    Color.Blue
+                } else {
+                    Color.Black
+                }
+            }
+        )
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Button(onClick = { temperatura++ }) {
+                Text("Subir")
+            }
+            Button(onClick = { temperatura-- }) {
+                Text("Bajar")
+            }
+            Button(onClick = {temperatura = 20}) {
+                Text("Resetear")
+            }
+            Spacer(modifier = Modifier.height(10.dp))
         }
     }
 }
