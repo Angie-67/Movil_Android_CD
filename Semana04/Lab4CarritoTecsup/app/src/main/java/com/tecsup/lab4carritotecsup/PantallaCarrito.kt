@@ -1,5 +1,6 @@
 package com.tecsup.lab4carritotecsup
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,7 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun PantallaCarrito() {
+fun PantallaCarrito(weight: Modifier.(Float) -> Modifier) {
     var nombre by remember { mutableStateOf("") }
     var precio by remember { mutableStateOf("") }
     var cantidad by remember { mutableStateOf("") }
@@ -92,6 +93,18 @@ fun PantallaCarrito() {
         )
     }
 
-    LazyColumn() { }
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxWidth()
+            .weight(1f),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        items(productos) { producto ->
+            TarjetaProducto(
+                producto = producto,
+                onEliminar = { productos.remove(producto) }
+            )
+        }
+    }
 }
 
