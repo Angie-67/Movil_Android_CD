@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MaterialTheme{
-                ContadorRoto()
+                ContadorConRemember()
             }
         }
     }
@@ -57,6 +57,26 @@ fun ContadorRoto() {
     Column {
         Text("Contador: $contador")
         Button(onClick = { contador++ }) {
+            Text("Incrementar")
+        }
+    }
+}
+
+@Composable
+fun ContadorConRemember() {
+    var contador by remember { mutableStateOf(0) }
+
+    Column(
+        modifier = Modifier.padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Contador: $contador",
+            style = MaterialTheme.typography.headlineMedium
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(onClick = {contador++}) {
             Text("Incrementar")
         }
     }
