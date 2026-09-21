@@ -8,6 +8,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+
+
+
+
+
+
+
+
+
+
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -147,7 +157,7 @@ fun PantallaRegistro(modifier: Modifier = Modifier) {
                 }
             }
             Text(
-                "✓ Producto registrado correctamente",
+                "✓ Producto registrado correctamente.",
                 color = Color(0xFF2E7D32))
         }
     }
