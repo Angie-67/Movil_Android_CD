@@ -100,10 +100,10 @@ fun PantallaTareas() {
             shape = RoundedCornerShape(24.dp)
         ) {
             Text(
-                text = "Agregar tarea",
+                text = "Agregar tarea/as",
                 color = Color.White,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Medium
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold
             )
         }
 
