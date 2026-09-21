@@ -37,7 +37,7 @@ fun PantallaCarrito(weight: Modifier.(Float) -> Modifier) {
             .padding(16.dp)
     ) {
         Text(
-            text = "Nuevo producto",
+            text = "Nuevo producto:",
             style = MaterialTheme.typography.headlineSmall
         )
         Text(
