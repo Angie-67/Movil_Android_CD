@@ -9,8 +9,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.vasquez.tecsup_fit.screens.DetalleClaseScreen
 import com.vasquez.tecsup_fit.screens.HomeScreen
+import com.vasquez.tecsup_fit.screens.PerfilScreen
 import com.vasquez.tecsup_fit.screens.ReservaScreen
 import com.vasquez.tecsup_fit.screens.ReservasScreen
+import com.vasquez.tecsup_fit.screens.RutinasScreen
 
 @Composable
 fun AppNavigation() {
