@@ -1,2 +1,67 @@
 package com.vasquez.tecsup_fit.screens
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.compose.foundation.lazy.items
+
+@Composable
+fun ReservasScreen(navController: NavController) {
+
+    val reservas = listOf(
+        "Yoga - 08:00 AM - Confirmada",
+        "Spinning - 10:00 AM - Confirmada",
+        "Entrenamiento funcional - 05:00 PM - Completada"
+    )
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+
+        Text(
+            text = "Mis reservas",
+            style = MaterialTheme.typography.headlineMedium
+        )
+
+        Text(
+            text = "Clases reservadas",
+            modifier = Modifier.padding(top = 8.dp)
+        )
+
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            contentPadding = PaddingValues(bottom = 16.dp)
+        ) {
+
+            items(reservas) { reserva ->
+
+                Card(
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+
+                    Text(
+                        text = reserva,
+                        modifier = Modifier.padding(16.dp),
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+                }
+            }
+        }
+    }
+}
