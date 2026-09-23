@@ -11,6 +11,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.vasquez.navlab.screens.DetailScreen
+import com.vasquez.navlab.screens.HomeScreen
+import com.vasquez.navlab.screens.ListScreen
+import com.vasquez.navlab.screens.ProfileScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
