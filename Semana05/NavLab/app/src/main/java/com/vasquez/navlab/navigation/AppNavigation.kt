@@ -9,6 +9,7 @@ import androidx.navigation.navArgument
 import com.vasquez.navlab.screens.DetailScreen
 import com.vasquez.navlab.screens.HomeScreen
 import com.vasquez.navlab.screens.ListScreen
+import com.vasquez.navlab.screens.LoginScreen
 import com.vasquez.navlab.screens.ProfileScreen
 
 @Composable
@@ -19,6 +20,9 @@ fun AppNavigation() {
         navController = navController,
         startDestination = Screen.Home.route
     ) {
+        composable(Screen.Login.route) {
+            LoginScreen(navController)
+        }
         composable(Screen.Home.route) {
             HomeScreen(navController)
         }
@@ -33,11 +37,11 @@ fun AppNavigation() {
             arguments = listOf(
                 navArgument("itemId") {
                     type = NavType.IntType
-                    defaultValue = 0
+                    defaultValue = 1
                 }
             )
         ) { backStackEntry ->
-            val itemId = backStackEntry.arguments?.getInt("itemId") ?: 0
+            val itemId = backStackEntry.arguments?.getInt("itemId") ?: 1
             DetailScreen(navController, itemId)
         }
     }
