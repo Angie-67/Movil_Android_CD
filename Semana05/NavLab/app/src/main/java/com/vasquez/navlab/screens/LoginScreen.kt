@@ -47,7 +47,6 @@ import com.vasquez.navlab.ui.theme.PurpleCardBackground
 import com.vasquez.navlab.ui.theme.PurpleLightBackground
 import com.vasquez.navlab.ui.theme.PurplePrimary
 import com.vasquez.navlab.ui.theme.PurpleTextSubtitle
-import com.vasquez.navlab.ui.theme.PurpleTextTitle
 
 @Composable
 fun LoginScreen(navController: NavController) {
