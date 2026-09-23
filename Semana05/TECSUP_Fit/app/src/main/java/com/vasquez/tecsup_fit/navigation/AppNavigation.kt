@@ -1,7 +1,12 @@
 package com.vasquez.tecsup_fit.navigation
 
-import android.R.attr.type
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -13,48 +18,156 @@ import com.vasquez.tecsup_fit.screens.PerfilScreen
 import com.vasquez.tecsup_fit.screens.ReservaScreen
 import com.vasquez.tecsup_fit.screens.ReservasScreen
 import com.vasquez.tecsup_fit.screens.RutinasScreen
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Event
+import androidx.compose.material.icons.filled.FitnessCenter
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
-    NavHost(
-        navController = navController,
-        startDestination = Screen.Home.route
-    ) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val rutaActual = navBackStackEntry?.destination?.route
 
-        composable(Screen.Home.route) {
-            HomeScreen(navController)
+    val rutasPrincipales = listOf(
+        Screen.Home.route,
+        Screen.Reservas.route,
+        Screen.Rutinas.route,
+        Screen.Perfil.route
+    )
+
+    Scaffold(
+        bottomBar = {
+            if (rutaActual in rutasPrincipales) {
+                BottomBar(
+                    navController = navController,
+                    rutaActual = rutaActual
+                )
+            }
         }
+    ) { innerPadding ->
 
-        composable(
-            route = Screen.DetalleClase.route,
-            arguments = listOf(
-                navArgument("id") {
-                    type = NavType.IntType
-                    defaultValue = 0
-                }
-            )
-        ) { backStackEntry ->
+        NavHost(
+            navController = navController,
+            startDestination = Screen.Home.route,
+            modifier = Modifier.padding(innerPadding)
+        ) {
 
-            val id = backStackEntry.arguments?.getInt("id") ?: 0
+            composable(Screen.Home.route) {
+                HomeScreen(navController)
+            }
 
-            DetalleClaseScreen(navController, id)
+            composable(
+                route = Screen.DetalleClase.route,
+                arguments = listOf(
+                    navArgument("id") {
+                        type = NavType.IntType
+                    }
+                )
+            ) { backStackEntry ->
+
+                val id = backStackEntry.arguments?.getInt("id") ?: 0
+
+                DetalleClaseScreen(
+                    navController = navController,
+                    id = id
+                )
+            }
+
+            composable(Screen.Reserva.route) {
+                ReservaScreen(navController)
+            }
+
+            composable(Screen.Reservas.route) {
+                ReservasScreen(navController)
+            }
+
+            composable(Screen.Rutinas.route) {
+                RutinasScreen(navController)
+            }
+
+            composable(Screen.Perfil.route) {
+                PerfilScreen(navController)
+            }
         }
+    }
+}
+@Composable
 
-        composable(Screen.Reserva.route) {
-            ReservaScreen(navController)
-        }
+fun BottomBar(
+    navController: NavController,
+    rutaActual: String?
+) {
 
-        composable(Screen.Reservas.route) {
-            ReservasScreen(navController)
-        }
+    NavigationBar {
 
-        composable(Screen.Rutinas.route) {
-            RutinasScreen(navController)
-        }
+        NavigationBarItem(
+            selected = rutaActual == Screen.Home.route,
+            onClick = {
+                navController.navigate(Screen.Home.route)
+            },
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.Home,
+                    contentDescription = "Inicio"
+                )
+            },
+            label = {
+                Text("Inicio")
+            }
+        )
 
-        composable(Screen.Perfil.route) {
-            PerfilScreen(navController)
-        }
+        NavigationBarItem(
+            selected = rutaActual == Screen.Reservas.route,
+            onClick = {
+                navController.navigate(Screen.Reservas.route)
+            },
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.Event,
+                    contentDescription = "Reservas"
+                )
+            },
+            label = {
+                Text("Reservas")
+            }
+        )
+
+        NavigationBarItem(
+            selected = rutaActual == Screen.Rutinas.route,
+            onClick = {
+                navController.navigate(Screen.Rutinas.route)
+            },
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.FitnessCenter,
+                    contentDescription = "Rutinas"
+                )
+            },
+            label = {
+                Text("Rutinas")
+            }
+        )
+
+        NavigationBarItem(
+            selected = rutaActual == Screen.Perfil.route,
+            onClick = {
+                navController.navigate(Screen.Perfil.route)
+            },
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.Person,
+                    contentDescription = "Perfil"
+                )
+            },
+            label = {
+                Text("Perfil")
+            }
+        )
     }
 }
