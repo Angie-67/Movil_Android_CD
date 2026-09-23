@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.vasquez.tecsup_fit.screens.HomeScreen
 
 @Composable
 fun AppNavigation() {
