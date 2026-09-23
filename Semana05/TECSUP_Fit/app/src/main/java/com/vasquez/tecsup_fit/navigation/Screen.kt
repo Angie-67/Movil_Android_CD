@@ -1,4 +1,10 @@
 package com.vasquez.tecsup_fit.navigation
 
-class Screen {
+sealed class Screen(val route: String) {
+    object Home : Screen("home")
+    object DetalleClase : Screen("detalle_clase/{id}")
+    object Reserva : Screen("reserva")
+    object Reservas : Screen("reservas")
+    object Rutinas : Screen("rutinas")
+    object Perfil : Screen("perfil")
 }
