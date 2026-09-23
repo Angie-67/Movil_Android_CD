@@ -10,6 +10,7 @@ import androidx.navigation.navArgument
 import com.vasquez.tecsup_fit.screens.DetalleClaseScreen
 import com.vasquez.tecsup_fit.screens.HomeScreen
 import com.vasquez.tecsup_fit.screens.ReservaScreen
+import com.vasquez.tecsup_fit.screens.ReservasScreen
 
 @Composable
 fun AppNavigation() {
