@@ -2,41 +2,33 @@ package com.vasquez.tecsup_fit.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// TECSUP Fit Brand Color Palette (Amigable y Enérgico - Sapphire Blue & Mint Teal)
-val SapphireBlue = Color(0xFF38BDF8)         // Primary Accent - Azul Zafiro enérgico y suave a la vista
-val OnSapphireBlue = Color(0xFF003545)
-val SapphireBlueContainer = Color(0xFF004D63)
-val OnSapphireBlueContainer = Color(0xFFC8F0FF)
+// Paleta de Colores de la Imagen (Verde Bosque & Menta Claro)
+val ForestGreen = Color(0xFF0D6E4E)            // Verde Bosque Principal
+val OnForestGreen = Color(0xFFFFFFFF)
+val ForestGreenContainer = Color(0xFFE0F2E9)   // Verde Menta Claro (Contenedor de íconos y badges)
+val OnForestGreenContainer = Color(0xFF043827)
 
-val MintTeal = Color(0xFF2DD4BF)             // Secondary Accent - Menta / Cyan fresco
-val OnMintTeal = Color(0xFF003731)
-val MintTealContainer = Color(0xFF004F47)
-val OnMintTealContainer = Color(0xFF99F6E4)
+val SecondaryGreen = Color(0xFF138A5B)
+val OnSecondaryGreen = Color(0xFFFFFFFF)
+val SecondaryGreenContainer = Color(0xFFD6F5E7)
+val OnSecondaryGreenContainer = Color(0xFF054228)
 
-val CoralSunset = Color(0xFFFB923C)          // Tertiary Accent - Naranja cálido
-val OnCoralSunset = Color(0xFF4A1900)
-
-// Dark Theme Surfaces (Deep Slate Blue)
-val DarkBackground = Color(0xFF0F172A)
-val DarkSurface = Color(0xFF1E293B)
-val DarkSurfaceVariant = Color(0xFF334155)
-val DarkOutline = Color(0xFF475569)
-
-val DarkOnBackground = Color(0xFFF1F5F9)
-val DarkOnSurface = Color(0xFFE2E8F0)
-val DarkOnSurfaceVariant = Color(0xFF94A3B8)
-
-// Light Theme Surfaces (Clean Slate)
-val LightBackground = Color(0xFFF8FAFC)
+// Superficies Claras (Basadas exactamente en las imágenes adjuntas)
+val LightBackground = Color(0xFFFFFFFF)        // Fondo blanco limpio
 val LightSurface = Color(0xFFFFFFFF)
-val LightSurfaceVariant = Color(0xFFF1F5F9)
-val LightOutline = Color(0xFFCBD5E1)
+val LightSurfaceVariant = Color(0xFFF1F3F4)     // Fondo gris muy claro para tarjetas
+val LightOutline = Color(0xFFE0E2E5)
 
-val LightPrimary = Color(0xFF0284C7)
-val LightOnPrimary = Color(0xFFFFFFFF)
-val LightPrimaryContainer = Color(0xFFE0F2FE)
-val LightOnPrimaryContainer = Color(0xFF0369A1)
+val LightOnBackground = Color(0xFF1A1C1E)      // Texto oscuro principal
+val LightOnSurface = Color(0xFF1A1C1E)
+val LightOnSurfaceVariant = Color(0xFF5F6368) // Texto secundario
 
-val LightOnBackground = Color(0xFF0F172A)
-val LightOnSurface = Color(0xFF1E293B)
-val LightOnSurfaceVariant = Color(0xFF64748B)
+// Fondos para Modo Oscuro
+val DarkBackground = Color(0xFF0A120E)
+val DarkSurface = Color(0xFF121E19)
+val DarkSurfaceVariant = Color(0xFF1A2B23)
+val DarkOutline = Color(0xFF2E453A)
+
+val DarkOnBackground = Color(0xFFE6F2EB)
+val DarkOnSurface = Color(0xFFE6F2EB)
+val DarkOnSurfaceVariant = Color(0xFFA1C4B8)

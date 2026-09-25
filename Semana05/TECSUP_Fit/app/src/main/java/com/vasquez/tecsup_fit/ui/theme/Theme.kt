@@ -10,34 +10,15 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
-private val DarkColorScheme = darkColorScheme(
-    primary = SapphireBlue,
-    onPrimary = OnSapphireBlue,
-    primaryContainer = SapphireBlueContainer,
-    onPrimaryContainer = OnSapphireBlueContainer,
-    secondary = MintTeal,
-    onSecondary = OnMintTeal,
-    secondaryContainer = MintTealContainer,
-    onSecondaryContainer = OnMintTealContainer,
-    tertiary = CoralSunset,
-    onTertiary = OnCoralSunset,
-    background = DarkBackground,
-    onBackground = DarkOnBackground,
-    surface = DarkSurface,
-    onSurface = DarkOnSurface,
-    surfaceVariant = DarkSurfaceVariant,
-    onSurfaceVariant = DarkOnSurfaceVariant,
-    outline = DarkOutline
-)
-
 private val LightColorScheme = lightColorScheme(
-    primary = LightPrimary,
-    onPrimary = LightOnPrimary,
-    primaryContainer = LightPrimaryContainer,
-    onPrimaryContainer = LightOnPrimaryContainer,
-    secondary = MintTeal,
-    onSecondary = OnMintTeal,
-    tertiary = CoralSunset,
+    primary = ForestGreen,
+    onPrimary = OnForestGreen,
+    primaryContainer = ForestGreenContainer,
+    onPrimaryContainer = OnForestGreenContainer,
+    secondary = SecondaryGreen,
+    onSecondary = OnSecondaryGreen,
+    secondaryContainer = SecondaryGreenContainer,
+    onSecondaryContainer = OnSecondaryGreenContainer,
     background = LightBackground,
     onBackground = LightOnBackground,
     surface = LightSurface,
@@ -47,9 +28,25 @@ private val LightColorScheme = lightColorScheme(
     outline = LightOutline
 )
 
+private val DarkColorScheme = darkColorScheme(
+    primary = ForestGreen,
+    onPrimary = OnForestGreen,
+    primaryContainer = ForestGreenContainer,
+    onPrimaryContainer = OnForestGreenContainer,
+    secondary = SecondaryGreen,
+    onSecondary = OnSecondaryGreen,
+    background = DarkBackground,
+    onBackground = DarkOnBackground,
+    surface = DarkSurface,
+    onSurface = DarkOnSurface,
+    surfaceVariant = DarkSurfaceVariant,
+    onSurfaceVariant = DarkOnSurfaceVariant,
+    outline = DarkOutline
+)
+
 @Composable
 fun TECSUP_FitTheme(
-    darkTheme: Boolean = true,
+    darkTheme: Boolean = false, // Modo claro predeterminado exactamente como en las imágenes
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
